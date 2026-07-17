@@ -1,0 +1,49 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        int i,j,row,col;
+        unordered_set<char> st;
+        char x;
+        for(row=0;row<9;row+=3)
+        for(col=0;col<9;col+=3)
+        {
+        for(i=0;i<3;i++)
+        {
+            for(j=0;j<3;j++)
+            {
+                x=board[row+i][col+j];
+                if(st.count(x))
+                    return false;
+                if(x!='.')
+                st.insert(x);
+            }
+        }
+        st.clear();
+        }
+        for(i=0;i<9;i++)
+        {
+            for(j=0;j<9;j++)
+            {
+                x=board[i][j];
+                if(st.count(x))
+                    return false;
+                if(x!='.')
+                st.insert(x);
+            }
+            st.clear();
+        }
+        for(j=0;j<9;j++)
+        {
+            for(i=0;i<9;i++)
+            {
+                x=board[i][j];
+                if(st.count(x))
+                    return false;
+                if(x!='.')
+                st.insert(x);
+            }
+            st.clear();
+        }
+        return true;
+    }
+};
